@@ -64,6 +64,18 @@ module Roger
                  default: false,
                  type: :boolean
 
+    class_option :yes,
+                 desc: "Answers all prompts with yes",
+                 aliases: ["-y"],
+                 default: false,
+                 type: :boolean
+
+    class_option :no,
+                 desc: "Answers all prompts with no",
+                 aliases: ["-n"],
+                 default: false,
+                 type: :boolean
+
     map %w(--version) => :version
 
     desc "test [COMMAND]", "Run one or more tests. Test can be 'all' for all

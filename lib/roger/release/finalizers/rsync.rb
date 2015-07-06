@@ -7,6 +7,8 @@ module Roger::Release::Finalizers
   # @see RsyncFinalizer#initialize for options
   #
   class Rsync < Base
+    include Roger::Helpers::Shell
+
     # @param Hash options The options
     #
     # @option options String :rsync The Rsync command to run (default is "rsync")
@@ -72,8 +74,7 @@ module Roger::Release::Finalizers
     end
 
     def prompt_for_upload(options)
-      !options[:ask] ||
-        (prompt("Do you wish to upload to #{options[:host]}? [y/N]: ")) =~ /\Ay(es)?\Z/
+      !options[:ask] || prompt_yes?("Do you wish to upload to #{options[:host]}?")
     end
 
     def validate_options!(release, options)
