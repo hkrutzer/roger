@@ -76,6 +76,10 @@ module Roger
       )
     end
 
+    def test_trailing_slashes_break
+      assert !@resolver.url_to_relative_url("/de/", "/")
+    end
+
     def test_path_to_url_relative_to_absolute_path
       assert_equal(
         @resolver.path_to_url(
@@ -85,6 +89,7 @@ module Roger
         "../formats/erb.html.erb"
       )
     end
+
   end
 
   # Test resolver with multiple load paths
